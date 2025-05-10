@@ -1,87 +1,123 @@
-
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Physik-Quiz MC (Einfach)</title>
-    <style>
-        body { font-family: sans-serif; margin: 10px; background: #f9f9f9; }
-        .frage { margin-bottom: 20px; padding: 10px; background: white; border-radius: 6px; }
-        .antworten { margin-top: 8px; }
-        button { padding: 10px 15px; font-size: 16px; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz – Leicht</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; background: #f4f4f4; }
+    .frage { background: white; padding: 15px; margin-bottom: 20px; border-radius: 6px; }
+    .antworten { margin-top: 10px; }
+    .feedback { font-weight: bold; margin-top: 8px; }
+    .richtig { color: green; }
+    .falsch { color: red; }
+    button { padding: 10px 15px; margin-top: 10px; font-size: 16px; }
+  </style>
 </head>
 <body>
-<h1>Physik-Quiz – Multiple Choice</h1>
+<h1>Quiz – Leicht</h1>
+<div id="quizContainer">
 
-<form id="quizForm">
-    <div class="frage">
-        <p><strong>1. Wie lautet die Einheit der elektrischen Spannung?</strong></p>
-        <div class="antworten">
-            <label><input type="radio" name="q1" value="A"> A) Ampere</label><br>
-            <label><input type="radio" name="q1" value="B"> B) Volt</label><br>
-            <label><input type="radio" name="q1" value="C"> C) Watt</label><br>
-            <label><input type="radio" name="q1" value="D"> D) Ohm</label>
-        </div>
-    </div>
+  <div class="frage" id="frage1">
+    <p><strong>1. Was fließt im elektrischen Stromkreis?</strong></p>
+    <div class="antworten">
+<label><input type="radio" name="q1" value="A" onchange="pruefeAntwort(1, 'B')"> A) Wärme</label><br><label><input type="radio" name="q1" value="B" onchange="pruefeAntwort(1, 'B')"> B) Elektronen</label><br><label><input type="radio" name="q1" value="C" onchange="pruefeAntwort(1, 'B')"> C) Licht</label><br><label><input type="radio" name="q1" value="D" onchange="pruefeAntwort(1, 'B')"> D) Schall</label><br></div>
+    <p class="feedback" id="feedback1"></p>
+  </div>
 
-    <div class="frage">
-        <p><strong>2. Wofür steht die Formel I = Q / t?</strong></p>
-        <div class="antworten">
-            <label><input type="radio" name="q2" value="A"> A) Spannung</label><br>
-            <label><input type="radio" name="q2" value="B"> B) Stromstärke</label><br>
-            <label><input type="radio" name="q2" value="C"> C) Leistung</label><br>
-            <label><input type="radio" name="q2" value="D"> D) Energie</label>
-        </div>
-    </div>
+  <div class="frage" id="frage2">
+    <p><strong>2. Welche Einheit hat die elektrische Spannung?</strong></p>
+    <div class="antworten">
+<label><input type="radio" name="q2" value="A" onchange="pruefeAntwort(2, 'C')"> A) Ampere</label><br><label><input type="radio" name="q2" value="B" onchange="pruefeAntwort(2, 'C')"> B) Newton</label><br><label><input type="radio" name="q2" value="C" onchange="pruefeAntwort(2, 'C')"> C) Volt</label><br><label><input type="radio" name="q2" value="D" onchange="pruefeAntwort(2, 'C')"> D) Watt</label><br></div>
+    <p class="feedback" id="feedback2"></p>
+  </div>
 
-    <div class="frage">
-        <p><strong>3. Ein Strom von 2 A fließt für 3 Sekunden. Wie viel Ladung wurde transportiert?</strong></p>
-        <div class="antworten">
-            <label><input type="radio" name="q3" value="A"> A) 1 C</label><br>
-            <label><input type="radio" name="q3" value="B"> B) 3 C</label><br>
-            <label><input type="radio" name="q3" value="C"> C) 6 C</label><br>
-            <label><input type="radio" name="q3" value="D"> D) 9 C</label>
-        </div>
-    </div>
+  <div class="frage" id="frage3">
+    <p><strong>3. Was ist die Einheit der Stromstärke?</strong></p>
+    <div class="antworten">
+<label><input type="radio" name="q3" value="A" onchange="pruefeAntwort(3, 'C')"> A) Volt</label><br><label><input type="radio" name="q3" value="B" onchange="pruefeAntwort(3, 'C')"> B) Watt</label><br><label><input type="radio" name="q3" value="C" onchange="pruefeAntwort(3, 'C')"> C) Ampere</label><br><label><input type="radio" name="q3" value="D" onchange="pruefeAntwort(3, 'C')"> D) Newton</label><br></div>
+    <p class="feedback" id="feedback3"></p>
+  </div>
 
-    <div class="frage">
-        <p><strong>4. Ein Gerät hat 12 V Spannung und zieht 0,5 A Strom. Wie viel Energie verbraucht es in 10 s?</strong></p>
-        <div class="antworten">
-            <label><input type="radio" name="q4" value="A"> A) 30 J</label><br>
-            <label><input type="radio" name="q4" value="B"> B) 60 J</label><br>
-            <label><input type="radio" name="q4" value="C"> C) 120 J</label><br>
-            <label><input type="radio" name="q4" value="D"> D) 6 J</label>
-        </div>
-    </div>
+  <div class="frage" id="frage4">
+    <p><strong>4. Was ist ein Leiter?</strong></p>
+    <div class="antworten">
+<label><input type="radio" name="q4" value="A" onchange="pruefeAntwort(4, 'A')"> A) Material, das Strom gut leitet</label><br><label><input type="radio" name="q4" value="B" onchange="pruefeAntwort(4, 'A')"> B) Isolator</label><br><label><input type="radio" name="q4" value="C" onchange="pruefeAntwort(4, 'A')"> C) Magnet</label><br><label><input type="radio" name="q4" value="D" onchange="pruefeAntwort(4, 'A')"> D) Batterie</label><br></div>
+    <p class="feedback" id="feedback4"></p>
+  </div>
 
-    <div class="frage">
-        <p><strong>5. Eine Lampe hat einen Wirkungsgrad von 25 % und nimmt 40 W auf. Wie viel Watt werden in Licht umgesetzt?</strong></p>
-        <div class="antworten">
-            <label><input type="radio" name="q5" value="A"> A) 25 W</label><br>
-            <label><input type="radio" name="q5" value="B"> B) 20 W</label><br>
-            <label><input type="radio" name="q5" value="C"> C) 15 W</label><br>
-            <label><input type="radio" name="q5" value="D"> D) 10 W</label>
-        </div>
-    </div>
+  <div class="frage" id="frage5">
+    <p><strong>5. Ein Stromkreis ist geschlossen, wenn…</strong></p>
+    <div class="antworten">
+<label><input type="radio" name="q5" value="A" onchange="pruefeAntwort(5, 'C')"> A) kein Verbraucher angeschlossen ist</label><br><label><input type="radio" name="q5" value="B" onchange="pruefeAntwort(5, 'C')"> B) der Schalter offen ist</label><br><label><input type="radio" name="q5" value="C" onchange="pruefeAntwort(5, 'C')"> C) alle Verbindungen vorhanden sind</label><br><label><input type="radio" name="q5" value="D" onchange="pruefeAntwort(5, 'C')"> D) die Spannung 0 ist</label><br></div>
+    <p class="feedback" id="feedback5"></p>
+  </div>
 
-    <button type="button" onclick="auswerten()">Auswerten</button>
-</form>
+  <div class="frage" id="frage6">
+    <p><strong>6. Was macht eine Batterie?</strong></p>
+    <div class="antworten">
+<label><input type="radio" name="q6" value="A" onchange="pruefeAntwort(6, 'B')"> A) misst Strom</label><br><label><input type="radio" name="q6" value="B" onchange="pruefeAntwort(6, 'B')"> B) erzeugt Spannung</label><br><label><input type="radio" name="q6" value="C" onchange="pruefeAntwort(6, 'B')"> C) speichert Licht</label><br><label><input type="radio" name="q6" value="D" onchange="pruefeAntwort(6, 'B')"> D) leitet Wärme</label><br></div>
+    <p class="feedback" id="feedback6"></p>
+  </div>
 
+  <div class="frage" id="frage7">
+    <p><strong>7. Was passiert, wenn man einen Draht durchtrennt?</strong></p>
+    <div class="antworten">
+<label><input type="radio" name="q7" value="A" onchange="pruefeAntwort(7, 'C')"> A) Kurzschluss</label><br><label><input type="radio" name="q7" value="B" onchange="pruefeAntwort(7, 'C')"> B) Strom fließt weiter</label><br><label><input type="radio" name="q7" value="C" onchange="pruefeAntwort(7, 'C')"> C) Stromkreis ist offen</label><br><label><input type="radio" name="q7" value="D" onchange="pruefeAntwort(7, 'C')"> D) Spannung steigt</label><br></div>
+    <p class="feedback" id="feedback7"></p>
+  </div>
+
+  <div class="frage" id="frage8">
+    <p><strong>8. Wofür steht das Symbol 'A' in der Physik?</strong></p>
+    <div class="antworten">
+<label><input type="radio" name="q8" value="A" onchange="pruefeAntwort(8, 'A')"> A) Ampere</label><br><label><input type="radio" name="q8" value="B" onchange="pruefeAntwort(8, 'A')"> B) Arbeit</label><br><label><input type="radio" name="q8" value="C" onchange="pruefeAntwort(8, 'A')"> C) Atom</label><br><label><input type="radio" name="q8" value="D" onchange="pruefeAntwort(8, 'A')"> D) Abstand</label><br></div>
+    <p class="feedback" id="feedback8"></p>
+  </div>
+
+  <div class="frage" id="frage9">
+    <p><strong>9. Wie nennt man die Bewegung der Elektronen?</strong></p>
+    <div class="antworten">
+<label><input type="radio" name="q9" value="A" onchange="pruefeAntwort(9, 'C')"> A) Licht</label><br><label><input type="radio" name="q9" value="B" onchange="pruefeAntwort(9, 'C')"> B) Spannung</label><br><label><input type="radio" name="q9" value="C" onchange="pruefeAntwort(9, 'C')"> C) Strom</label><br><label><input type="radio" name="q9" value="D" onchange="pruefeAntwort(9, 'C')"> D) Reibung</label><br></div>
+    <p class="feedback" id="feedback9"></p>
+  </div>
+
+  <div class="frage" id="frage10">
+    <p><strong>10. Wie misst man Spannung?</strong></p>
+    <div class="antworten">
+<label><input type="radio" name="q10" value="A" onchange="pruefeAntwort(10, 'C')"> A) Amperemeter</label><br><label><input type="radio" name="q10" value="B" onchange="pruefeAntwort(10, 'C')"> B) Thermometer</label><br><label><input type="radio" name="q10" value="C" onchange="pruefeAntwort(10, 'C')"> C) Voltmeter</label><br><label><input type="radio" name="q10" value="D" onchange="pruefeAntwort(10, 'C')"> D) Strommesser</label><br></div>
+    <p class="feedback" id="feedback10"></p>
+  </div>
+
+</div>
+<button onclick="zeigeErgebnis()">Quiz abschließen</button>
 <p id="ergebnis"></p>
 
 <script>
-function auswerten() {
-    const loesungen = ['B', 'B', 'C', 'B', 'D'];
-    let punkte = 0;
-    for (let i = 1; i <= 5; i++) {
-        let antwort = document.querySelector('input[name="q'+i+'"]:checked');
-        if (antwort && antwort.value === loesungen[i-1]) punkte++;
+let richtigeAntworten = new Set();
+function pruefeAntwort(nr, loesung) {
+    const auswahl = document.querySelector(`input[name="q${nr}"]:checked`);
+    const feedback = document.getElementById("feedback" + nr);
+    if (!auswahl) return;
+    if (auswahl.value === loesung) {
+        feedback.textContent = "Richtig!";
+        feedback.className = "feedback richtig";
+        richtigeAntworten.add(nr);
+    } else {
+        feedback.textContent = "Falsch. Richtig wäre: " + loesung;
+        feedback.className = "feedback falsch";
+        richtigeAntworten.delete(nr);
     }
-    document.getElementById('ergebnis').innerText = `Du hast ${punkte} von 5 Punkten erreicht.`;
+}
+
+function zeigeErgebnis() {
+    const total = 10;
+    if (richtigeAntworten.size === total) {
+        document.getElementById("ergebnis").textContent = "Super! Du hast alle Fragen richtig beantwortet.";
+    } else {
+        const fehlende = total - richtigeAntworten.size;
+        document.getElementById("ergebnis").textContent = `Noch ${fehlende} Frage(n) falsch. Versuche es nochmal!`;
+    }
 }
 </script>
-
 </body>
 </html>
