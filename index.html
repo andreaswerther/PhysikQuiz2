@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Physik-Quiz – Leicht</title>
   <style>
     body { font-family: sans-serif; padding: 20px; background: #f4f4f4; }
@@ -16,123 +16,62 @@
 </head>
 <body>
 <h1>Physik-Quiz – Leicht</h1>
-<div id="quizContainer"></div>
+<div id="quizContainer">
+
+  <div class="frage" id="frage1">
+    <p><strong>1. Was fließt im elektrischen Stromkreis?</strong></p>
+    <div class="antworten">
+<label><input type="radio" name="q1" value="A" onchange="pruefeAntwort(1, 'B', `Im Stromkreis bewegen sich unsichtbare Teilchen – die Elektronen.`, `Marie Curie fragt: Was bewegt sich in einem Draht, ohne dass du es sehen kannst?`)"> A) Wärme</label><br><label><input type="radio" name="q1" value="B" onchange="pruefeAntwort(1, 'B', `Im Stromkreis bewegen sich unsichtbare Teilchen – die Elektronen.`, `Marie Curie fragt: Was bewegt sich in einem Draht, ohne dass du es sehen kannst?`)"> B) Elektronen</label><br><label><input type="radio" name="q1" value="C" onchange="pruefeAntwort(1, 'B', `Im Stromkreis bewegen sich unsichtbare Teilchen – die Elektronen.`, `Marie Curie fragt: Was bewegt sich in einem Draht, ohne dass du es sehen kannst?`)"> C) Licht</label><br><label><input type="radio" name="q1" value="D" onchange="pruefeAntwort(1, 'B', `Im Stromkreis bewegen sich unsichtbare Teilchen – die Elektronen.`, `Marie Curie fragt: Was bewegt sich in einem Draht, ohne dass du es sehen kannst?`)"> D) Schall</label><br></div>
+    <p class="feedback" id="feedback1"></p>
+  </div>
+
+  <div class="frage" id="frage2">
+    <p><strong>2. Welche Einheit hat die elektrische Spannung?</strong></p>
+    <div class="antworten">
+<label><input type="radio" name="q2" value="A" onchange="pruefeAntwort(2, 'C', `Spannung ist wie ein Höhenunterschied – sie wird in Volt gemessen.`, `Albert Einstein sagt: Manchmal ist der Unterschied zwischen zwei Punkten entscheidend – wie nennt man das?`)"> A) Ampere</label><br><label><input type="radio" name="q2" value="B" onchange="pruefeAntwort(2, 'C', `Spannung ist wie ein Höhenunterschied – sie wird in Volt gemessen.`, `Albert Einstein sagt: Manchmal ist der Unterschied zwischen zwei Punkten entscheidend – wie nennt man das?`)"> B) Newton</label><br><label><input type="radio" name="q2" value="C" onchange="pruefeAntwort(2, 'C', `Spannung ist wie ein Höhenunterschied – sie wird in Volt gemessen.`, `Albert Einstein sagt: Manchmal ist der Unterschied zwischen zwei Punkten entscheidend – wie nennt man das?`)"> C) Volt</label><br><label><input type="radio" name="q2" value="D" onchange="pruefeAntwort(2, 'C', `Spannung ist wie ein Höhenunterschied – sie wird in Volt gemessen.`, `Albert Einstein sagt: Manchmal ist der Unterschied zwischen zwei Punkten entscheidend – wie nennt man das?`)"> D) Watt</label><br></div>
+    <p class="feedback" id="feedback2"></p>
+  </div>
+
+  <div class="frage" id="frage3">
+    <p><strong>3. Was ist ein Leiter?</strong></p>
+    <div class="antworten">
+<label><input type="radio" name="q3" value="A" onchange="pruefeAntwort(3, 'A', `Leiter lassen elektrischen Strom durch – Isolatoren nicht.`, `André-Marie Ampère erinnert dich: Manche Stoffe geben Strom gerne weiter – andere halten ihn lieber zurück.`)"> A) Material, das Strom gut leitet</label><br><label><input type="radio" name="q3" value="B" onchange="pruefeAntwort(3, 'A', `Leiter lassen elektrischen Strom durch – Isolatoren nicht.`, `André-Marie Ampère erinnert dich: Manche Stoffe geben Strom gerne weiter – andere halten ihn lieber zurück.`)"> B) Isolator</label><br><label><input type="radio" name="q3" value="C" onchange="pruefeAntwort(3, 'A', `Leiter lassen elektrischen Strom durch – Isolatoren nicht.`, `André-Marie Ampère erinnert dich: Manche Stoffe geben Strom gerne weiter – andere halten ihn lieber zurück.`)"> C) Magnet</label><br><label><input type="radio" name="q3" value="D" onchange="pruefeAntwort(3, 'A', `Leiter lassen elektrischen Strom durch – Isolatoren nicht.`, `André-Marie Ampère erinnert dich: Manche Stoffe geben Strom gerne weiter – andere halten ihn lieber zurück.`)"> D) Batterie</label><br></div>
+    <p class="feedback" id="feedback3"></p>
+  </div>
+
+</div>
 <button onclick="zeigeErgebnis()">Quiz abschließen</button>
 <p id="ergebnis"></p>
+
 <script>
-const fragen = [
-  {
-    frage: "Was fließt im elektrischen Stromkreis?",
-    antworten: ["A) Wärme", "B) Elektronen", "C) Licht", "D) Schall"],
-    richtig: "B",
-    merksatz: "Merke: Was fließt im elektrischen Stromkreis.",
-    tipp: "Ein berühmter Physiker rät: Überlege genauer – was wird hier eigentlich gefragt?"
-  },
-  {
-    frage: "Welche Einheit hat die elektrische Spannung?",
-    antworten: ["A) Ampere", "B) Newton", "C) Volt", "D) Watt"],
-    richtig: "C",
-    merksatz: "Merke: Welche Einheit hat die elektrische Spannung.",
-    tipp: "Ein berühmter Physiker rät: Überlege genauer – was wird hier eigentlich gefragt?"
-  },
-  {
-    frage: "Was ist die Einheit der Stromstärke?",
-    antworten: ["A) Volt", "B) Watt", "C) Ampere", "D) Newton"],
-    richtig: "C",
-    merksatz: "Merke: Was ist die Einheit der Stromstärke.",
-    tipp: "Ein berühmter Physiker rät: Überlege genauer – was wird hier eigentlich gefragt?"
-  },
-  {
-    frage: "Was ist ein Leiter?",
-    antworten: ["A) Material, das Strom gut leitet", "B) Isolator", "C) Magnet", "D) Batterie"],
-    richtig: "A",
-    merksatz: "Merke: Was ist ein Leiter.",
-    tipp: "Ein berühmter Physiker rät: Überlege genauer – was wird hier eigentlich gefragt?"
-  },
-  {
-    frage: "Ein Stromkreis ist geschlossen, wenn…",
-    antworten: ["A) kein Verbraucher angeschlossen ist", "B) der Schalter offen ist", "C) alle Verbindungen vorhanden sind", "D) die Spannung 0 ist"],
-    richtig: "C",
-    merksatz: "Merke: Ein Stromkreis ist geschlossen, wenn….",
-    tipp: "Ein berühmter Physiker rät: Überlege genauer – was wird hier eigentlich gefragt?"
-  },
-  {
-    frage: "Was macht eine Batterie?",
-    antworten: ["A) misst Strom", "B) erzeugt Spannung", "C) speichert Licht", "D) leitet Wärme"],
-    richtig: "B",
-    merksatz: "Merke: Was macht eine Batterie.",
-    tipp: "Ein berühmter Physiker rät: Überlege genauer – was wird hier eigentlich gefragt?"
-  },
-  {
-    frage: "Was passiert, wenn man einen Draht durchtrennt?",
-    antworten: ["A) Kurzschluss", "B) Strom fließt weiter", "C) Stromkreis ist offen", "D) Spannung steigt"],
-    richtig: "C",
-    merksatz: "Merke: Was passiert, wenn man einen Draht durchtrennt.",
-    tipp: "Ein berühmter Physiker rät: Überlege genauer – was wird hier eigentlich gefragt?"
-  },
-  {
-    frage: "Wofür steht das Symbol 'A' in der Physik?",
-    antworten: ["A) Ampere", "B) Arbeit", "C) Atom", "D) Abstand"],
-    richtig: "A",
-    merksatz: "Merke: Wofür steht das Symbol 'A' in der Physik.",
-    tipp: "Ein berühmter Physiker rät: Überlege genauer – was wird hier eigentlich gefragt?"
-  },
-  {
-    frage: "Wie nennt man die Bewegung der Elektronen?",
-    antworten: ["A) Licht", "B) Spannung", "C) Strom", "D) Reibung"],
-    richtig: "C",
-    merksatz: "Merke: Wie nennt man die Bewegung der Elektronen.",
-    tipp: "Ein berühmter Physiker rät: Überlege genauer – was wird hier eigentlich gefragt?"
-  },
-  {
-    frage: "Wie misst man Spannung?",
-    antworten: ["A) Amperemeter", "B) Thermometer", "C) Voltmeter", "D) Strommesser"],
-    richtig: "C",
-    merksatz: "Merke: Wie misst man Spannung.",
-    tipp: "Ein berühmter Physiker rät: Überlege genauer – was wird hier eigentlich gefragt?"
-  },
-];
-const richtigeAntworten = new Set();
-function renderFragen() {
-  const container = document.getElementById("quizContainer");
-  container.innerHTML = "";
-  fragen.forEach((f, index) => {
-    const nr = index + 1;
-    let html = `<div class="frage" id="frage${nr}">
-      <p><strong>${nr}. ${f.frage}</strong></p>
-      <div class="antworten">`;
-    f.antworten.forEach(opt => {
-      html += `<label><input type="radio" name="q${nr}" value="${opt[0]}" onchange="pruefeAntwort(${nr}, f.richtig, f.merksatz, f.tipp)"> ${opt}</label><br>`;
-    });
-    html += `</div><p class="feedback" id="feedback${nr}"></p></div>`;
-    container.innerHTML += html;
-  });
-}
+let richtigeAntworten = new Set();
+
 function pruefeAntwort(nr, loesung, merksatz, tipp) {
-  const antwort = document.querySelector(`input[name="q${nr}"]:checked`);
-  const feedback = document.getElementById("feedback" + nr);
-  if (!antwort) return;
-  if (antwort.value === loesung) {
-    feedback.textContent = "Richtig! " + merksatz;
-    feedback.className = "feedback richtig";
-    richtigeAntworten.add(nr);
-  } else {
-    feedback.textContent = "Leider falsch. " + tipp;
-    feedback.className = "feedback falsch";
-    richtigeAntworten.delete(nr);
-  }
+    const auswahl = document.querySelector('input[name="q'+nr+'"]:checked');
+    const feedback = document.getElementById("feedback" + nr);
+    if (!auswahl) return;
+
+    if (auswahl.value === loesung) {
+        feedback.textContent = "Richtig! " + merksatz;
+        feedback.className = "feedback richtig";
+        richtigeAntworten.add(nr);
+    } else {
+        feedback.textContent = "Leider falsch. " + tipp;
+        feedback.className = "feedback falsch";
+        richtigeAntworten.delete(nr);
+    }
 }
+
 function zeigeErgebnis() {
-  const total = fragen.length;
-  const korrekt = richtigeAntworten.size;
-  const ergebnis = document.getElementById("ergebnis");
-  if (korrekt === total) {
-    ergebnis.textContent = "Super! Du hast alle Fragen richtig beantwortet.";
-  } else {
-    ergebnis.textContent = `Du hast ${korrekt} von ${total} richtig. Mach weiter!`;
-  }
+    const total = document.querySelectorAll('.frage').length;
+    const korrekt = richtigeAntworten.size;
+    const ergebnis = document.getElementById("ergebnis");
+    if (korrekt === total) {
+        ergebnis.textContent = "Super! Du hast alle Fragen richtig beantwortet.";
+    } else {
+        ergebnis.textContent = "Noch " + (total - korrekt) + " Frage(n) offen oder falsch. Versuche es nochmal!";
+    }
 }
-renderFragen();
 </script>
 </body>
 </html>
